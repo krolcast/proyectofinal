@@ -100,6 +100,7 @@
 <body>
 <header>
   <div class="brand">
+    <!-- Reemplaza logo.png por tu logo local en la carpeta o súbelo con el botón de 'Cargar imágenes' dentro de la página -->
     <img src="logo.png" alt="Logo La Stella" id="logoPreview">
     <div>
       <h1>La Stella Ristorante ⭐</h1>
@@ -129,11 +130,116 @@
   <a class="nav-link" href="#promos">Promociones</a>
   <a class="nav-link" href="#galeria">Galería</a>
   <a class="nav-link" href="#ordenar">Ordenar en línea</a>
+  <!-- Botón destacado de reservas -->
  <a class="nav-reserva" href="formulario.html" style="font-size: 20px; color: yellow;">Reservas</a>
+
 </nav> 
 
 <main>
-  <!-- ... todo tu contenido igual que lo mandaste ... -->
+  <div class="grid">
+    <div>
+      <section class="hero">
+        <div class="hero-left">
+          <h2>Bienvenido a La Stella — Sabor Italiano</h2>
+          <p class="muted">Disfruta recetas tradicionales con técnica moderna. Abierto todos los días: 12:00 - 23:00.</p>
+          <a class="cta" href="#menu-entradas">Ver Menú</a>
+          <div class="gallery" style="margin-top:18px">
+            <!-- Galería de ejemplo: reemplaza las imágenes con las tuyas usando la sección "Cargar imágenes" -->
+            <div class="card"><img src="imagen1.jpg" alt="Lasagna"><div class="card-body"><h3>Lasagna clásica</h3><p class="tiny">Capas de pasta fresca y bechamel casera</p></div></div>
+            <div class="card"><img src="imagen2.jpg" alt="Pasta"><div class="card-body"><h3>Tagliatelle al ragù</h3><p class="tiny">Salsa lenta con carne seleccionada</p></div></div>
+            <div class="card"><img src="imagen3.jpg" alt="Postre"><div class="card-body"><h3>Tiramisú</h3><p class="tiny">Tradicional y cremoso</p></div></div>
+            <div class="card"><img src="imagen4.jpg" alt="Vino"><div class="card-body"><h3>Selección de vinos</h3><p class="tiny">Curada por nuestro sommelier</p></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="historia" style="margin-top:22px">
+        <h2>📖 Nuestra Historia</h2>
+        <div class="panel" style="margin-top:12px">
+          <p class="muted">La Stella nació del amor por la cocina italiana: recetas familiares, ingredientes frescos y la búsqueda constante de la excelencia. Nuestro chef combina técnicas clásicas con toques contemporáneos para crear platos memorables.</p>
+        </div>
+      </section>
+
+      <section id="menu-entradas" style="margin-top:22px">
+        <h2>🍽 Menú</h2>
+        <div class="panel" style="margin-top:12px">
+          <h4>Entradas</h4>
+          <p class="muted">Bruschettas mixtas — Carpaccio de res — Antipasto italiano</p>
+          <h4 id="menu-pastas" style="margin-top:12px">Pastas y Risottos</h4>
+          <p class="muted">Tagliatelle al ragù — Gnocchi de papa — Risotto ai funghi</p>
+          <h4 id="menu-postres" style="margin-top:12px">Postres</h4>
+          <p class="muted">Tiramisú — Panna Cotta — Cannoli</p>
+        </div>
+      </section>
+
+      <section id="vinos-rojos" style="margin-top:22px">
+        <h2>🍷 Vinos</h2>
+        <div class="panel">
+          <h4>Tintos</h4>
+          <p class="muted">Cabernet Sauvignon — Sangiovese — Barolo (selección limitada)</p>
+          <h4 id="vinos-blancos" style="margin-top:10px">Blancos</h4>
+          <p class="muted">Chardonnay — Pinot Grigio</p>
+        </div>
+      </section>
+
+      <section id="promos" style="margin-top:22px">
+        <h2>🎉 Promociones</h2>
+        <div class="promo">
+          <strong>Martes de pasta:</strong> 2x1 en pastas seleccionadas (todo el día).
+        </div>
+        <div class="promo">
+          <strong>Happy Hour:</strong> Descuento en copas de vino de 17:00 a 19:00.
+        </div>
+      </section>
+
+      <section id="galeria" style="margin-top:22px">
+        <h2>📸 Galería</h2>
+        <div class="panel">
+          <p class="muted">Sube tus propias imágenes con el control "Cargar imágenes" en la barra lateral y verás una vista previa aquí abajo.</p>
+          <div id="uploadedGallery" class="gallery" style="margin-top:12px"></div>
+        </div>
+      </section>
+
+    </div>
+
+    <aside>
+      <div class="panel">
+        <h4>Promociones destacadas</h4>
+        <p class="muted">Reserva para grupos y obtén un postre de cortesía para 6+ personas.</p>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h4>Ordena en línea</h4>
+        <p class="muted">Pide para recoger o entrega a domicilio</p>
+        <form id="orderForm" class="order-form" onsubmit="handleOrder(event)">
+          <label>Nombre completo<input name="name" required placeholder="Tu nombre"></label>
+          <label>Teléfono<input name="phone" required placeholder="55 1234 5678"></label>
+          <label>Correo electrónico<input name="email" type="email" placeholder="ejemplo@mail.com"></label>
+          <label>Dirección (si pides a domicilio)<input name="address" placeholder="Calle, número, colonia"></label>
+          <label>¿Para recoger o entrega?<select name="type" required><option value="">Selecciona...</option><option value="recoger">Recoger</option><option value="domicilio">Domicilio</option></select></label>
+          <label>Tu pedido<textarea name="details" rows="4" placeholder="Ej: 1 Lasagna clásica, 2 Tiramisú"></textarea></label>
+          <label>Comentarios adicionales<textarea name="notes" rows="2" placeholder="Sin cebolla, alergias..."></textarea></label>
+          <button class="btn-primary" type="submit">Enviar pedido</button>
+          <div id="orderMsg" class="tiny muted" style="margin-top:8px"></div>
+        </form>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h4>Subir imágenes (galería / logo)</h4>
+        <div class="uploader">
+          <input id="imageInput" type="file" accept="image/*" multiple>
+          <div class="tiny muted" style="margin-top:8px">Selecciona imágenes desde tu computadora. Se previsualizarán en la galería.</div>
+          <div id="thumbs" class="thumbs"></div>
+          <button class="btn-primary" style="margin-top:10px" id="applyImages">Aplicar a galería / logo</button>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:12px">
+        <h4>Contacto</h4>
+        <p class="muted">Tel: +52 55 9876 5432<br>Av. Gourmet 123</p>
+      </div>
+    </aside>
+  </div>
 
   <footer>
     ⭐ La Stella Ristorante — Elegancia y sabor en cada plato ⭐
@@ -146,12 +252,80 @@
     e.preventDefault();
     const parent = el.parentElement;
     parent.classList.toggle('open');
+    // close others
     document.querySelectorAll('.dropdown').forEach(d=>{if(d!==parent) d.classList.remove('open')});
   }
   document.addEventListener('click', (e)=>{
     if(!e.target.closest('.dropdown')) document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
   })
-  // ... resto de tus scripts iguales ...
+
+  // Order form: client-side demo (no backend). We'll save to localStorage and show confirmation.
+  function handleOrder(ev){
+    ev.preventDefault();
+    const f = ev.target;
+    const data = {
+      name: f.name.value.trim(),
+      phone: f.phone.value.trim(),
+      email: f.email.value.trim(),
+      address: f.address.value.trim(),
+      type: f.type.value,
+      details: f.details.value.trim(),
+      notes: f.notes.value.trim(),
+      date: new Date().toISOString()
+    };
+    // simple validation
+    if(!data.name || !data.phone || !data.type){
+      document.getElementById('orderMsg').textContent = 'Por favor completa los campos obligatorios (nombre, teléfono y tipo).';
+      return;
+    }
+    // store
+    const orders = JSON.parse(localStorage.getItem('laStella_orders') || '[]');
+    orders.push(data);
+    localStorage.setItem('laStella_orders', JSON.stringify(orders));
+    f.reset();
+    document.getElementById('orderMsg').textContent = '¡Pedido recibido! Te contactaremos para confirmar. (Demo: guardado localmente)';
+  }
+
+  // Image upload + preview
+  const input=document.getElementById('imageInput');
+  const thumbs=document.getElementById('thumbs');
+  const applyBtn=document.getElementById('applyImages');
+  let selectedFiles=[];
+  input.addEventListener('change',()=>{
+    thumbs.innerHTML='';
+    selectedFiles=[...input.files];
+    selectedFiles.forEach(file=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const div=document.createElement('div');div.className='thumb';
+        div.innerHTML='<img src="'+e.target.result+'" alt="">';
+        thumbs.appendChild(div);
+      };
+      reader.readAsDataURL(file);
+    })
+  });
+  applyBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
+    if(selectedFiles.length==0)return;
+    // First image updates logo
+    const logo=document.getElementById('logoPreview');
+    const r=new FileReader();
+    r.onload=e=>{logo.src=e.target.result};
+    r.readAsDataURL(selectedFiles[0]);
+    // All images appear in gallery
+    const gallery=document.getElementById('uploadedGallery');
+    gallery.innerHTML='';
+    selectedFiles.forEach(file=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const card=document.createElement('div');
+        card.className='card';
+        card.innerHTML='<img src="'+e.target.result+'"><div class="card-body"><h3>Imagen subida</h3><p class="tiny">Personalizada</p></div>';
+        gallery.appendChild(card);
+      };
+      reader.readAsDataURL(file);
+    });
+  });
 </script>
 
 <!--Start of Tawk.to Script-->
@@ -170,9 +344,6 @@ s0.parentNode.insertBefore(s1,s0);
 
 </body>
 </html>
-
-
-
 
 
 

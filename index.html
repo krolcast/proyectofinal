@@ -1,340 +1,167 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>La Stella Ristorante — Italiano</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --navy:#051229;
-    --navy-2:#0b1d3a;
-    --gold:#d4af37;
-    --gold-soft:#f3e5ab;
-    --white:#fbfbfb;
-    --muted: rgba(255,255,255,0.85);
-    --glass: rgba(255,255,255,0.04);
-    --radius:14px;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:'Poppins',system-ui,Arial;
-    background: linear-gradient(180deg,var(--navy) 0%, #071033 60%);
-    color:var(--white);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-  }
-  header{
-    border-bottom:2px solid var(--gold);
-    padding:28px 18px;
-    text-align:center;
-    background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(0,0,0,0));
-  }
-  .brand{display:flex;gap:18px;align-items:center;justify-content:center}
-  .brand img{width:84px;height:84px;object-fit:contain;border-radius:12px;border:2px solid rgba(212,175,55,0.12)}
-  h1{font-family:'Playfair Display',serif;margin:8px 0 0;font-size:2.6rem;color:var(--gold)}
-  header p{margin:6px 0 0;color:var(--gold-soft)}
-
-  /* NAV */
-  nav{display:flex;justify-content:center;gap:18px;padding:12px 8px;background: rgba(0,0,0,0.08)}
-  .nav-link{position:relative;color:var(--gold);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
-  .nav-link:hover{background:rgba(212,175,55,0.06)}
-  .dropdown{position:relative}
-  .drop-menu{position:absolute;left:0;top:calc(100% + 8px);background:var(--navy-2);border:1px solid rgba(212,175,55,0.12);padding:12px;border-radius:10px;min-width:200px;display:none;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
-  .drop-menu a{display:block;color:var(--white);padding:8px;border-radius:8px;text-decoration:none}
-  .drop-menu a:hover{background:rgba(255,255,255,0.03)}
-  .dropdown.open .drop-menu{display:block}
-
-  main{max-width:1100px;margin:28px auto;padding:0 18px}
-  .grid{display:grid;grid-template-columns:1fr 360px;gap:28px}
-
-  /* HERO */
-  .hero{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:var(--radius);display:flex;gap:18px;align-items:center}
-  .hero-left h2{font-family:'Playfair Display',serif;color:var(--gold);margin:0 0 8px;font-size:1.9rem}
-  .hero-left p{color:var(--muted);margin:0 0 16px}
-  .cta{display:inline-block;background:var(--gold);color:var(--navy);padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
-
-  /* GALLERY */
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:18px}
-  .card{background:var(--glass);border:1px solid rgba(212,175,55,0.06);border-radius:12px;overflow:hidden;position:relative}
-  .card img{width:100%;height:170px;object-fit:cover;display:block}
-  .card-body{padding:12px}
-  .card-body h3{font-family:'Playfair Display',serif;color:var(--gold);margin:0 0 6px}
-  .card-body p{color:var(--muted);margin:0;font-size:0.95rem}
-
-  /* Sidebar */
-  aside{position:sticky;top:22px}
-  .panel{background:rgba(255,255,255,0.03);padding:16px;border-radius:12px;border:1px solid rgba(212,175,55,0.06)}
-  .panel h4{margin:0 0 10px;font-family:'Playfair Display',serif;color:var(--gold)}
-  .promo{background:linear-gradient(90deg, rgba(212,175,55,0.08), rgba(255,255,255,0.02));padding:12px;border-radius:10px;margin-bottom:12px}
-
-  /* FORM ORDER */
-  .order-form input,.order-form textarea,.order-form select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(212,175,55,0.12);background:transparent;color:var(--white)}
-  .order-form label{display:block;font-size:0.9rem;margin-bottom:6px;color:var(--gold-soft)}
-  .btn-primary{background:var(--gold);color:var(--navy);padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer}
-
-  footer{margin-top:28px;padding:18px;text-align:center;border-top:2px solid rgba(212,175,55,0.08);color:var(--gold-soft)}
-
-  /* responsive */
-  @media (max-width:900px){
-    .grid{grid-template-columns:1fr}
-    nav{flex-wrap:wrap}
-    .brand img{width:68px;height:68px}
-    h1{font-size:2rem}
-  }
-
-  /* small helpers */
-  .muted{color:var(--muted)}
-  .tiny{font-size:0.85rem}
-
-  /* image upload preview area */
-  .uploader{border:2px dashed rgba(255,255,255,0.05);padding:12px;border-radius:10px;text-align:center}
-  .thumbs{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .thumb{width:90px;height:70px;border-radius:8px;overflow:hidden;background:#111;display:flex;align-items:center;justify-content:center}
-  .thumb img{width:100%;height:100%;object-fit:cover}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>La Stella Ristorante — Italiano</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ... TU CSS COMPLETO AQUÍ (omitido por espacio, pero ya lo tienes en tu versión) ... */
+  </style>
 </head>
 <body>
-<header>
-  <div class="brand">
-    <!-- Reemplaza logo.png por tu logo local en la carpeta o súbelo con el botón de 'Cargar imágenes' dentro de la página -->
-    <img src="logo.png" alt="Logo La Stella" id="logoPreview">
-    <div>
-      <h1>La Stella Ristorante ⭐</h1>
-      <p>Auténtica cocina italiana — pastas frescas, lasagna y vinos selectos</p>
+  <header>
+    <div class="brand">
+      <img src="logo.png" alt="Logo La Stella" id="logoPreview">
+      <div>
+        <h1>La Stella Ristorante ⭐</h1>
+        <p>Auténtica cocina italiana — pastas frescas, lasagna y vinos selectos</p>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<nav>
-  <a class="nav-link" href="#historia">Historia</a>
-  <div class="dropdown">
-    <a class="nav-link" href="#" onclick="toggleDropdown(event,this)">Menú ▾</a>
-    <div class="drop-menu" aria-hidden="true">
-      <a href="#menu-entradas">Entradas</a>
-      <a href="#menu-pastas">Pastas & Risottos</a>
-      <a href="#menu-postres">Postres</a>
+  <nav>
+    <a class="nav-link" href="#historia">Historia</a>
+    <div class="dropdown">
+      <a class="nav-link" href="#" onclick="toggleDropdown(event,this)">Menú ▾</a>
+      <div class="drop-menu" aria-hidden="true">
+        <a href="#menu-entradas">Entradas</a>
+        <a href="#menu-pastas">Pastas & Risottos</a>
+        <a href="#menu-postres">Postres</a>
+      </div>
     </div>
-  </div>
-  <div class="dropdown">
-    <a class="nav-link" href="#" onclick="toggleDropdown(event,this)">Vinos ▾</a>
-    <div class="drop-menu" aria-hidden="true">
-      <a href="#vinos-rojos">Tintos</a>
-      <a href="#vinos-blancos">Blancos</a>
-      <a href="#vinos-espumosos">Espumosos</a>
+    <div class="dropdown">
+      <a class="nav-link" href="#" onclick="toggleDropdown(event,this)">Vinos ▾</a>
+      <div class="drop-menu" aria-hidden="true">
+        <a href="#vinos-rojos">Tintos</a>
+        <a href="#vinos-blancos">Blancos</a>
+        <a href="#vinos-espumosos">Espumosos</a>
+      </div>
     </div>
-  </div>
-  <a class="nav-link" href="#promos">Promociones</a>
-  <a class="nav-link" href="#galeria">Galería</a>
-  <a class="nav-link" href="#ordenar">Ordenar en línea</a>
-  <!-- Botón destacado de reservas -->
- <a class="nav-reserva" href="formulario.html" style="font-size: 20px; color: yellow;">Reservas</a>
+    <a class="nav-link" href="#promos">Promociones</a>
+    <a class="nav-link" href="#galeria">Galería</a>
+    <a class="nav-link" href="#ordenar">Ordenar en línea</a>
+    <a class="nav-reserva" href="formulario.html" style="font-size: 20px; color: yellow;">Reservas</a>
+  </nav>
 
-</nav> 
-
-<main>
-  <div class="grid">
-    <div>
-      <section class="hero">
-        <div class="hero-left">
-          <h2>Bienvenido a La Stella — Sabor Italiano</h2>
-          <p class="muted">Disfruta recetas tradicionales con técnica moderna. Abierto todos los días: 12:00 - 23:00.</p>
-          <a class="cta" href="#menu-entradas">Ver Menú</a>
-          <div class="gallery" style="margin-top:18px">
-            <!-- Galería de ejemplo: reemplaza las imágenes con las tuyas usando la sección "Cargar imágenes" -->
-            <div class="card"><img src="imagen1.jpg" alt="Lasagna"><div class="card-body"><h3>Lasagna clásica</h3><p class="tiny">Capas de pasta fresca y bechamel casera</p></div></div>
-            <div class="card"><img src="imagen2.jpg" alt="Pasta"><div class="card-body"><h3>Tagliatelle al ragù</h3><p class="tiny">Salsa lenta con carne seleccionada</p></div></div>
-            <div class="card"><img src="imagen3.jpg" alt="Postre"><div class="card-body"><h3>Tiramisú</h3><p class="tiny">Tradicional y cremoso</p></div></div>
-            <div class="card"><img src="imagen4.jpg" alt="Vino"><div class="card-body"><h3>Selección de vinos</h3><p class="tiny">Curada por nuestro sommelier</p></div></div>
-          </div>
-        </div>
-      </section>
-
-      <section id="historia" style="margin-top:22px">
-        <h2>📖 Nuestra Historia</h2>
-        <div class="panel" style="margin-top:12px">
-          <p class="muted">La Stella nació del amor por la cocina italiana: recetas familiares, ingredientes frescos y la búsqueda constante de la excelencia. Nuestro chef combina técnicas clásicas con toques contemporáneos para crear platos memorables.</p>
-        </div>
-      </section>
-
-      <section id="menu-entradas" style="margin-top:22px">
-        <h2>🍽 Menú</h2>
-        <div class="panel" style="margin-top:12px">
-          <h4>Entradas</h4>
-          <p class="muted">Bruschettas mixtas — Carpaccio de res — Antipasto italiano</p>
-          <h4 id="menu-pastas" style="margin-top:12px">Pastas y Risottos</h4>
-          <p class="muted">Tagliatelle al ragù — Gnocchi de papa — Risotto ai funghi</p>
-          <h4 id="menu-postres" style="margin-top:12px">Postres</h4>
-          <p class="muted">Tiramisú — Panna Cotta — Cannoli</p>
-        </div>
-      </section>
-
-      <section id="vinos-rojos" style="margin-top:22px">
-        <h2>🍷 Vinos</h2>
-        <div class="panel">
-          <h4>Tintos</h4>
-          <p class="muted">Cabernet Sauvignon — Sangiovese — Barolo (selección limitada)</p>
-          <h4 id="vinos-blancos" style="margin-top:10px">Blancos</h4>
-          <p class="muted">Chardonnay — Pinot Grigio</p>
-        </div>
-      </section>
-
-      <section id="promos" style="margin-top:22px">
-        <h2>🎉 Promociones</h2>
-        <div class="promo">
-          <strong>Martes de pasta:</strong> 2x1 en pastas seleccionadas (todo el día).
-        </div>
-        <div class="promo">
-          <strong>Happy Hour:</strong> Descuento en copas de vino de 17:00 a 19:00.
-        </div>
-      </section>
-
-      <section id="galeria" style="margin-top:22px">
-        <h2>📸 Galería</h2>
-        <div class="panel">
-          <p class="muted">Sube tus propias imágenes con el control "Cargar imágenes" en la barra lateral y verás una vista previa aquí abajo.</p>
-          <div id="uploadedGallery" class="gallery" style="margin-top:12px"></div>
-        </div>
-      </section>
-
-    </div>
-
-    <aside>
-      <div class="panel">
-        <h4>Promociones destacadas</h4>
-        <p class="muted">Reserva para grupos y obtén un postre de cortesía para 6+ personas.</p>
+  <main>
+    <div class="grid">
+      <div>
+        <!-- SECCIONES PRINCIPALES: Hero, Historia, Menú, Vinos, Promociones, Galería -->
+        <!-- ... TU CONTENIDO HTML AQUÍ (ya lo tienes, no ha cambiado) ... -->
       </div>
 
-      <div class="panel" style="margin-top:12px">
-        <h4>Ordena en línea</h4>
-        <p class="muted">Pide para recoger o entrega a domicilio</p>
-        <form id="orderForm" class="order-form" onsubmit="handleOrder(event)">
-          <label>Nombre completo<input name="name" required placeholder="Tu nombre"></label>
-          <label>Teléfono<input name="phone" required placeholder="55 1234 5678"></label>
-          <label>Correo electrónico<input name="email" type="email" placeholder="ejemplo@mail.com"></label>
-          <label>Dirección (si pides a domicilio)<input name="address" placeholder="Calle, número, colonia"></label>
-          <label>¿Para recoger o entrega?<select name="type" required><option value="">Selecciona...</option><option value="recoger">Recoger</option><option value="domicilio">Domicilio</option></select></label>
-          <label>Tu pedido<textarea name="details" rows="4" placeholder="Ej: 1 Lasagna clásica, 2 Tiramisú"></textarea></label>
-          <label>Comentarios adicionales<textarea name="notes" rows="2" placeholder="Sin cebolla, alergias..."></textarea></label>
-          <button class="btn-primary" type="submit">Enviar pedido</button>
-          <div id="orderMsg" class="tiny muted" style="margin-top:8px"></div>
-        </form>
-      </div>
+      <aside>
+        <!-- PANEL LATERAL: promociones, formulario, imágenes, contacto -->
+        <!-- ... TU CONTENIDO HTML AQUÍ ... -->
+      </aside>
+    </div>
 
-      <div class="panel" style="margin-top:12px">
-        <h4>Subir imágenes (galería / logo)</h4>
-        <div class="uploader">
-          <input id="imageInput" type="file" accept="image/*" multiple>
-          <div class="tiny muted" style="margin-top:8px">Selecciona imágenes desde tu computadora. Se previsualizarán en la galería.</div>
-          <div id="thumbs" class="thumbs"></div>
-          <button class="btn-primary" style="margin-top:10px" id="applyImages">Aplicar a galería / logo</button>
-        </div>
-      </div>
+    <footer>
+      ⭐ La Stella Ristorante — Elegancia y sabor en cada plato ⭐
+    </footer>
+  </main>
 
-      <div class="panel" style="margin-top:12px">
-        <h4>Contacto</h4>
-        <p class="muted">Tel: +52 55 9876 5432<br>Av. Gourmet 123</p>
-      </div>
-    </aside>
-  </div>
-
-  <footer>
-    ⭐ La Stella Ristorante — Elegancia y sabor en cada plato ⭐
-  </footer>
-</main>
-
-<script>
-  // Dropdown helpers
-  function toggleDropdown(e, el){
-    e.preventDefault();
-    const parent = el.parentElement;
-    parent.classList.toggle('open');
-    // close others
-    document.querySelectorAll('.dropdown').forEach(d=>{if(d!==parent) d.classList.remove('open')});
-  }
-  document.addEventListener('click', (e)=>{
-    if(!e.target.closest('.dropdown')) document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
-  })
-
-  // Order form: client-side demo (no backend). We'll save to localStorage and show confirmation.
-  function handleOrder(ev){
-    ev.preventDefault();
-    const f = ev.target;
-    const data = {
-      name: f.name.value.trim(),
-      phone: f.phone.value.trim(),
-      email: f.email.value.trim(),
-      address: f.address.value.trim(),
-      type: f.type.value,
-      details: f.details.value.trim(),
-      notes: f.notes.value.trim(),
-      date: new Date().toISOString()
-    };
-    // simple validation
-    if(!data.name || !data.phone || !data.type){
-      document.getElementById('orderMsg').textContent = 'Por favor completa los campos obligatorios (nombre, teléfono y tipo).';
-      return;
+  <script>
+    // Dropdown helpers
+    function toggleDropdown(e, el){
+      e.preventDefault();
+      const parent = el.parentElement;
+      parent.classList.toggle('open');
+      document.querySelectorAll('.dropdown').forEach(d=>{if(d!==parent) d.classList.remove('open')});
     }
-    // store
-    const orders = JSON.parse(localStorage.getItem('laStella_orders') || '[]');
-    orders.push(data);
-    localStorage.setItem('laStella_orders', JSON.stringify(orders));
-    f.reset();
-    document.getElementById('orderMsg').textContent = '¡Pedido recibido! Te contactaremos para confirmar. (Demo: guardado localmente)';
-  }
-
-  // Image upload + preview
-  const imageInput = document.getElementById('imageInput');
-  const thumbs = document.getElementById('thumbs');
-  let selectedFiles = [];
-  imageInput.addEventListener('change', (e)=>{
-    thumbs.innerHTML = '';
-    selectedFiles = Array.from(e.target.files);
-    selectedFiles.forEach((file, i)=>{
-      const reader = new FileReader();
-      const wrap = document.createElement('div'); wrap.className='thumb';
-      reader.onload = function(ev){
-        const img = document.createElement('img'); img.src = ev.target.result; wrap.appendChild(img);
-      }
-      reader.readAsDataURL(file);
-      thumbs.appendChild(wrap);
+    document.addEventListener('click', (e)=>{
+      if(!e.target.closest('.dropdown')) document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open'));
     })
-  })
 
-  // Apply images to gallery and optionally set first as logo
-  document.getElementById('applyImages').addEventListener('click', ()=>{
-    const gallery = document.getElementById('uploadedGallery');
-    const logo = document.getElementById('logoPreview');
-    if(selectedFiles.length===0){ alert('Selecciona primero al menos una imagen.'); return; }
-    gallery.innerHTML='';
-    selectedFiles.forEach((file, idx)=>{
-      const reader = new FileReader();
-      reader.onload = function(ev){
-        const card = document.createElement('div'); card.className='card';
-        const img = document.createElement('img'); img.src = ev.target.result;
-        const bd = document.createElement('div'); bd.className='card-body';
-        const h3 = document.createElement('h3'); h3.textContent = file.name.split('.')[0];
-        const p = document.createElement('p'); p.className='tiny muted'; p.textContent = '';
-        bd.appendChild(h3); bd.appendChild(p);
-        card.appendChild(img); card.appendChild(bd);
-        gallery.appendChild(card);
-        // Set first image as logo preview
-        if(idx===0) logo.src = ev.target.result;
+    // Order form
+    function handleOrder(ev){
+      ev.preventDefault();
+      const f = ev.target;
+      const data = {
+        name: f.name.value.trim(),
+        phone: f.phone.value.trim(),
+        email: f.email.value.trim(),
+        address: f.address.value.trim(),
+        type: f.type.value,
+        details: f.details.value.trim(),
+        notes: f.notes.value.trim(),
+        date: new Date().toISOString()
+      };
+      if(!data.name || !data.phone || !data.type){
+        document.getElementById('orderMsg').textContent = 'Por favor completa los campos obligatorios (nombre, teléfono y tipo).';
+        return;
       }
-      reader.readAsDataURL(file);
+      const orders = JSON.parse(localStorage.getItem('laStella_orders') || '[]');
+      orders.push(data);
+      localStorage.setItem('laStella_orders', JSON.stringify(orders));
+      f.reset();
+      document.getElementById('orderMsg').textContent = '¡Pedido recibido! Te contactaremos para confirmar. (Demo: guardado localmente)';
+    }
+
+    // Image upload + preview
+    const imageInput = document.getElementById('imageInput');
+    const thumbs = document.getElementById('thumbs');
+    let selectedFiles = [];
+    imageInput.addEventListener('change', (e)=>{
+      thumbs.innerHTML = '';
+      selectedFiles = Array.from(e.target.files);
+      selectedFiles.forEach((file, i)=>{
+        const reader = new FileReader();
+        const wrap = document.createElement('div'); wrap.className='thumb';
+        reader.onload = function(ev){
+          const img = document.createElement('img'); img.src = ev.target.result; wrap.appendChild(img);
+        }
+        reader.readAsDataURL(file);
+        thumbs.appendChild(wrap);
+      })
     })
-    // reset input
-    imageInput.value=''; thumbs.innerHTML=''; selectedFiles=[];
-  })
 
-  // Accessibility: close dropdown with Esc
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open')) })
+    // Apply images to gallery and set first as logo
+    document.getElementById('applyImages').addEventListener('click', ()=>{
+      const gallery = document.getElementById('uploadedGallery');
+      const logo = document.getElementById('logoPreview');
+      if(selectedFiles.length===0){ alert('Selecciona primero al menos una imagen.'); return; }
+      gallery.innerHTML='';
+      selectedFiles.forEach((file, idx)=>{
+        const reader = new FileReader();
+        reader.onload = function(ev){
+          const card = document.createElement('div'); card.className='card';
+          const img = document.createElement('img'); img.src = ev.target.result;
+          const bd = document.createElement('div'); bd.className='card-body';
+          const h3 = document.createElement('h3'); h3.textContent = file.name.split('.')[0];
+          const p = document.createElement('p'); p.className='tiny muted'; p.textContent = '';
+          bd.appendChild(h3); bd.appendChild(p);
+          card.appendChild(img); card.appendChild(bd);
+          gallery.appendChild(card);
+          if(idx===0) logo.src = ev.target.result;
+        }
+        reader.readAsDataURL(file);
+      })
+      imageInput.value=''; thumbs.innerHTML=''; selectedFiles=[];
+    })
 
-</script>
+    // Close dropdowns on Esc
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') document.querySelectorAll('.dropdown').forEach(d=>d.classList.remove('open')) })
+  </script>
+
+  <!--Start of Tawk.to Script-->
+  <script type="text/javascript">
+  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+  (function(){
+    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+    s1.async=true;
+    s1.src='https://embed.tawk.to/68cc0737b285fd192a49074e/1j5efoc95';
+    s1.charset='UTF-8';
+    s1.setAttribute('crossorigin','*');
+    s0.parentNode.insertBefore(s1,s0);
+  })();
+  </script>
+  <!--End of Tawk.to Script-->
+
 </body>
 </html>
+
+
 
 
